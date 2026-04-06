@@ -32,7 +32,7 @@ public class RegistroServlet extends HttpServlet {
             String password  = request.getParameter("password");
             int idTipo       = Integer.parseInt(request.getParameter("idTipoUsuario"));
 
-            // ✅ Solo permite estudiante (1) o docente (2) — nunca admin (3)
+            //  Solo permite estudiante (1) o docente (2) — nunca admin (3)
             if (idTipo == 3) idTipo = 1;
 
             TipoUsuario tipo = new TipoUsuario();

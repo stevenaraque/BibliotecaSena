@@ -119,7 +119,7 @@ public class PrestamoDAO {
         long diasRetraso     = ChronoUnit.DAYS.between(fechaEsperada, hoy);
         boolean hayRetraso   = diasRetraso > 0;
 
-        // Determinar estado: devuelto(2) o vencido(3)
+       
         int idEstado = hayRetraso ? 3 : 2;
 
         String sqlUpdate = "UPDATE prestamo SET fecha_devolucion_real = ?, "

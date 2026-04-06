@@ -58,7 +58,7 @@ public class MultaDAO {
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idPrestamo);
             ps.setBigDecimal(2, monto);
-            ps.setObject(3, fechaPago);   // null-safe con setObject
+            ps.setObject(3, fechaPago);   
             ps.setInt(4, idEstado);
             ps.setInt(5, idMulta);
             return ps.executeUpdate() > 0;

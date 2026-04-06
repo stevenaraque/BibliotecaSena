@@ -167,7 +167,7 @@
         </div>
     </div>
 
-    <!-- Modal Solicitar Préstamo -->
+    <!-- Modal Préstamo -->
     <div class="modal fade" id="prestamoModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -207,7 +207,7 @@
         </div>
     </div>
 
-    <!-- Modal Confirmar Devolución -->
+    <!-- Modal Devolución -->
     <div class="modal fade" id="devolucionModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

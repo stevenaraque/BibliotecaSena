@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <!-- Modal Crear/Editar -->
+    <!-- modal formulario -->
     <div class="modal fade" id="usuarioModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    <!-- Modal Eliminar -->
+    <!-- modal confirmación -->
     <div class="modal fade" id="modalEliminar" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

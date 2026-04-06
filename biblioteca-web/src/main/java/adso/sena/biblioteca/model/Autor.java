@@ -9,10 +9,10 @@ public class Autor {
     private String nacionalidad;
     private LocalDate fechaNacimiento;
 
-    // Constructor vacío
+   
     public Autor() {}
 
-    // Constructor con parámetros principales
+    
     public Autor(String nombres, String apellidos, String nacionalidad, LocalDate fechaNacimiento) {
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -20,7 +20,7 @@ public class Autor {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    // Getters y Setters
+    
     public int getIdAutor() { return idAutor; }
     public void setIdAutor(int idAutor) { this.idAutor = idAutor; }
 

@@ -17,7 +17,7 @@ public class ConexionDB {
             + "&allowPublicKeyRetrieval=true";
 
     private static final String USUARIO = "root";
-    private static final String CLAVE = "1057585950";   // ← Tu contraseña
+    private static final String CLAVE = "1057585950";   
 
     /**
      * Obtiene una conexión a la base de datos
@@ -28,13 +28,13 @@ public class ConexionDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");   // Cargamos el driver explícitamente
             Connection conn = DriverManager.getConnection(URL, USUARIO, CLAVE);
-            System.out.println("✅ Conexión exitosa a la base de datos biblioteca_db");
+            System.out.println("Conexión exitosa a la base de datos biblioteca_db");
             return conn;
         } catch (ClassNotFoundException e) {
-            System.err.println("❌ No se encontró el driver de MySQL. Verifica que tengas el JAR agregado.");
+            System.err.println("No se encontró el driver de MySQL. Verifica que tengas el JAR agregado.");
             throw new SQLException("Driver de MySQL no encontrado", e);
         } catch (SQLException e) {
-            System.err.println("❌ Error al conectar con la base de datos.");
+            System.err.println("Error al conectar con la base de datos.");
             System.err.println("   Verifica que MySQL esté corriendo y la contraseña sea correcta.");
             throw e;
         }

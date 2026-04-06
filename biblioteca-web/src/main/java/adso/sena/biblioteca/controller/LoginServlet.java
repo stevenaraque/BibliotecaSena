@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
             // Crear sesión y guardar usuario
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
-            session.setMaxInactiveInterval(30 * 60); // 30 minutos
+            session.setMaxInactiveInterval(30 * 60); 
 
             // Redirigir según rol
             if (usuario.esAdmin()) {

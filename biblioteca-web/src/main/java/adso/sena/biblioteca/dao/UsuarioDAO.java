@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UsuarioDAO {
 
-    // SQL base reutilizable — incluye password y alias consistentes
+    
     private static final String SQL_BASE =
             "SELECT u.id_usuario, u.documento, u.nombres, u.apellidos, "
             + "u.email, u.password, u.telefono, "

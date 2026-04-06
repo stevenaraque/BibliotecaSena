@@ -6,11 +6,11 @@ public class EstadoUsuario {
     private String nombre;
     private String descripcion;
 
-    // Constructor vacío
+    
     public EstadoUsuario() {
     }
 
-    // Constructor principal
+    
     public EstadoUsuario(int idEstadoUsuario, String nombre, String descripcion) {
         this.idEstadoUsuario = idEstadoUsuario;
         this.nombre = nombre;

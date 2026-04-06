@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class RolFilter implements Filter {
 
     // Rutas públicas — no requieren sesión
-    private static final String[] RUTAS_PUBLICAS = {"/login", "/css/", "/images/"};
+    private static final String[] RUTAS_PUBLICAS = {"/login", "/css/"};
 
     // Rutas exclusivas de admin
     private static final String[] RUTAS_ADMIN = {

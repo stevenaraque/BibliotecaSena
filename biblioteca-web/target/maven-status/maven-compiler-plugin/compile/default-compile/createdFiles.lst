@@ -30,7 +30,6 @@ adso\sena\biblioteca\model\EstadoUsuario.class
 adso\sena\biblioteca\model\TipoUsuario.class
 adso\sena\biblioteca\dao\MultaDAO.class
 adso\sena\biblioteca\model\Prestamo.class
-adso\sena\biblioteca\controller\BaseServlet.class
 adso\sena\biblioteca\model\Usuario.class
 adso\sena\biblioteca\controller\PrestamoServlet.class
 adso\sena\biblioteca\service\LibroService.class

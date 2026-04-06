@@ -6,11 +6,11 @@ public class TipoUsuario {
     private String nombre;
     private String descripcion;
 
-    // Constructor vacío
+    
     public TipoUsuario() {
     }
 
-    // Constructor principal
+   
     public TipoUsuario(int idTipoUsuario, String nombre, String descripcion) {
         this.idTipoUsuario = idTipoUsuario;
         this.nombre = nombre;

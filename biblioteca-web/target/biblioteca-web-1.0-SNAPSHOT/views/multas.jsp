@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <!-- Modal Crear/Editar -->
+    <!-- Modal  -->
     <div class="modal fade" id="multaModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <!-- Modal Eliminar -->
+    <!-- modal confirmación -->
     <div class="modal fade" id="modalEliminar" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
