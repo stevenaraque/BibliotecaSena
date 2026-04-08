@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibroService {
+
     private final LibroDAO libroDAO;
 
     public LibroService() {
@@ -69,12 +70,31 @@ public class LibroService {
             return 0;
         }
     }
+
     public List<Libro> listarDisponibles() {
+        try {
+            return libroDAO.listarDisponibles();
+        } catch (SQLException e) {
+            System.err.println("Error al listar libros disponibles: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+     public List<Libro> buscarEnCatalogo(String texto) {
     try {
-        return libroDAO.listarDisponibles();
-    } catch (SQLException e) {
-        System.err.println("Error al listar libros disponibles: " + e.getMessage());
+        return libroDAO.buscarEnCatalogo(texto);
+    } catch (Exception e) {
+        System.err.println("Error al buscar en catalogo: " + e.getMessage());
         return new ArrayList<>();
     }
+} 
+    public Libro obtenerPorId(int idLibro) {
+    try {
+        return libroDAO.obtenerPorId(idLibro);
+    } catch (SQLException e) {
+        System.err.println("Error al obtener libro por ID: " + e.getMessage());
+        return null;
+    }
 }
+   
+   
 }

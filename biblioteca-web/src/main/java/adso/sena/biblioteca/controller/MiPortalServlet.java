@@ -1,5 +1,6 @@
 package adso.sena.biblioteca.controller;
 
+import adso.sena.biblioteca.model.Libro;
 import adso.sena.biblioteca.model.Multa;
 import adso.sena.biblioteca.model.Prestamo;
 import adso.sena.biblioteca.model.Usuario;
@@ -20,26 +21,47 @@ import javax.servlet.http.HttpSession;
 public class MiPortalServlet extends HttpServlet {
 
     private final PrestamoService prestamoService = new PrestamoService();
-    private final MultaService    multaService    = new MultaService();
-    private final LibroService    libroService    = new LibroService();
+    private final MultaService multaService = new MultaService();
+    private final LibroService libroService = new LibroService();
 
     @Override
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
         Usuario usuario = (Usuario) session.getAttribute("usuario");
 
+        // Cargar datos normales del portal
         List<Prestamo> prestamos = prestamoService.listarPorUsuario(usuario.getIdUsuario());
-        List<Multa>    multas    = multaService.listarPorUsuario(usuario.getIdUsuario());
+        List<Multa> multas = multaService.listarPorUsuario(usuario.getIdUsuario());
 
-        request.setAttribute("misPrestamos",      prestamos);
-        request.setAttribute("misMultas",         multas);
-        request.setAttribute("totalPrestamos",    prestamos.size());
-        request.setAttribute("totalMultas",       multas.size());
+        request.setAttribute("misPrestamos", prestamos);
+        request.setAttribute("misMultas", multas);
+        request.setAttribute("totalPrestamos", prestamos.size());
+        request.setAttribute("totalMultas", multas.size());
         request.setAttribute("librosDisponibles", libroService.listarDisponibles());
-        request.setAttribute("usuario",           usuario);
+        request.setAttribute("usuario", usuario);
 
+        // NUEVO: Detectar si viene solicitud desde catálogo (ANTES del forward)
+        String action = request.getParameter("action");
+        String idLibroParam = request.getParameter("idLibro");
+
+        if ("solicitar".equals(action) && idLibroParam != null) {
+            try {
+                int idLibro = Integer.parseInt(idLibroParam);
+                Libro libro = libroService.obtenerPorId(idLibro);
+
+                if (libro != null) {
+                    request.setAttribute("libroPrestamo", libro);
+                    request.setAttribute("abrirModalPrestamo", true);
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // SOLO UN forward al final
         request.getRequestDispatcher("/views/miPortal.jsp").forward(request, response);
     }
 
@@ -50,12 +72,12 @@ public class MiPortalServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        String action  = request.getParameter("action");
+        String action = request.getParameter("action");
         String mensaje = "";
 
         try {
             if ("solicitar".equals(action)) {
-                int idLibro             = Integer.parseInt(request.getParameter("idLibro"));
+                int idLibro = Integer.parseInt(request.getParameter("idLibro"));
                 LocalDate fechaEsperada = LocalDate.parse(request.getParameter("fechaDevolucionEsperada"));
 
                 if (!fechaEsperada.isAfter(LocalDate.now())) {
@@ -68,7 +90,7 @@ public class MiPortalServlet extends HttpServlet {
                 }
 
             } else if ("devolver".equals(action)) {
-                int idPrestamo   = Integer.parseInt(request.getParameter("idPrestamo"));
+                int idPrestamo = Integer.parseInt(request.getParameter("idPrestamo"));
                 boolean devuelto = prestamoService.devolver(idPrestamo);
                 mensaje = devuelto
                         ? "✅ Libro devuelto correctamente. Si hubo retraso se generó una multa automáticamente."

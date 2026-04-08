@@ -18,7 +18,9 @@ import javax.servlet.http.HttpSession;
 public class RolFilter implements Filter {
 
     // Rutas públicas — no requieren sesión
-    private static final String[] RUTAS_PUBLICAS = {"/login", "/css/"};
+   private static final String[] RUTAS_PUBLICAS = {
+    "/login", "/logout", "/catalogo", "/registro", "/css/", "/images/"
+};
 
     // Rutas exclusivas de admin
     private static final String[] RUTAS_ADMIN = {
@@ -60,12 +62,6 @@ public class RolFilter implements Filter {
                 response.sendRedirect(request.getContextPath() + "/miPortal");
                 return;
             }
-        }
-
-        // 4. Verificar que usuario normal no acceda a portal de admin
-        if (ruta.startsWith("/miPortal") && usuario.esAdmin()) {
-            response.sendRedirect(request.getContextPath() + "/dashboard");
-            return;
         }
 
         // Todo bien — continuar

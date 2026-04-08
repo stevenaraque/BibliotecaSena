@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "RegistroServlet", urlPatterns = {"/registro"})
 public class RegistroServlet extends HttpServlet {
@@ -20,8 +21,9 @@ public class RegistroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String mensaje = "";
-        String error   = "";
+
+        String mensajeFlash = null;
+        String errorFlash   = null;
 
         try {
             String nombres   = request.getParameter("nombres");
@@ -30,46 +32,60 @@ public class RegistroServlet extends HttpServlet {
             String telefono  = request.getParameter("telefono");
             String email     = request.getParameter("email");
             String password  = request.getParameter("password");
-            int idTipo       = Integer.parseInt(request.getParameter("idTipoUsuario"));
+            String idTipoStr = request.getParameter("idTipoUsuario");
 
-            //  Solo permite estudiante (1) o docente (2) — nunca admin (3)
-            if (idTipo == 3) idTipo = 1;
-
-            TipoUsuario tipo = new TipoUsuario();
-            tipo.setIdTipoUsuario(idTipo);
-
-            EstadoUsuario estado = new EstadoUsuario();
-            estado.setIdEstadoUsuario(1); // activo por defecto
-
-            Usuario usuario = new Usuario();
-            usuario.setNombres(nombres);
-            usuario.setApellidos(apellidos);
-            usuario.setDocumento(documento);
-            usuario.setTelefono(telefono);
-            usuario.setEmail(email);
-            usuario.setPassword(password);
-            usuario.setTipoUsuario(tipo);
-            usuario.setEstadoUsuario(estado);
-
-            boolean resultado = usuarioService.registrarUsuario(usuario);
-            if (resultado) {
-                mensaje = "Cuenta creada correctamente. Ya puedes iniciar sesión.";
+            // Validación
+            if (nombres == null || nombres.trim().isEmpty()
+                    || apellidos == null || apellidos.trim().isEmpty()
+                    || documento == null || documento.trim().isEmpty()
+                    || email == null || email.trim().isEmpty()
+                    || password == null || password.trim().isEmpty()
+                    || idTipoStr == null || idTipoStr.trim().isEmpty()) {
+                errorFlash = "Por favor completa todos los campos obligatorios.";
             } else {
-                error = "No se pudo crear la cuenta. Intenta de nuevo.";
+                int idTipo = Integer.parseInt(idTipoStr);
+                if (idTipo == 3) idTipo = 1; // no se permite registrar admins
+
+                TipoUsuario tipo = new TipoUsuario();
+                tipo.setIdTipoUsuario(idTipo);
+
+                EstadoUsuario estado = new EstadoUsuario();
+                estado.setIdEstadoUsuario(1); // activo por defecto
+
+                Usuario usuario = new Usuario();
+                usuario.setNombres(nombres.trim());
+                usuario.setApellidos(apellidos.trim());
+                usuario.setDocumento(documento.trim());
+                usuario.setTelefono(telefono != null ? telefono.trim() : "");
+                usuario.setEmail(email.trim());
+                usuario.setPassword(password.trim());
+                usuario.setTipoUsuario(tipo);
+                usuario.setEstadoUsuario(estado);
+
+                boolean resultado = usuarioService.registrarUsuario(usuario);
+
+                if (resultado) {
+                    mensajeFlash = "Cuenta creada correctamente. Ya puedes iniciar sesion.";
+                } else {
+                    errorFlash = "No se pudo crear la cuenta. El correo o documento ya estan registrados.";
+                }
             }
 
         } catch (RuntimeException e) {
-            error = e.getMessage();
+            errorFlash = e.getMessage() != null
+                    ? e.getMessage()
+                    : "Error al procesar el registro.";
+            e.printStackTrace();
         } catch (Exception e) {
-            error = "Error inesperado: " + e.getMessage();
+            errorFlash = "Error inesperado: " + e.getMessage();
+            e.printStackTrace();
         }
 
-        if (!mensaje.isEmpty()) {
-            request.setAttribute("mensaje", mensaje);
-        } else {
-            request.setAttribute("error", error);
-        }
+        // Guardar en sesión para que LoginServlet los lea al redirigir
+        HttpSession session = request.getSession();
+        if (mensajeFlash != null) session.setAttribute("mensaje", mensajeFlash);
+        if (errorFlash   != null) session.setAttribute("error",   errorFlash);
 
-        request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 }

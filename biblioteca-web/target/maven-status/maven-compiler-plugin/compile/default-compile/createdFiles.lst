@@ -1,4 +1,5 @@
 adso\sena\biblioteca\filter\RolFilter.class
+adso\sena\biblioteca\controller\CatalogoServlet.class
 adso\sena\biblioteca\model\Autor.class
 adso\sena\biblioteca\controller\DashboardServlet.class
 adso\sena\biblioteca\service\AutorService.class

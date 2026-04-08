@@ -32,7 +32,7 @@ CREATE TABLE `auditoria_prestamo` (
   `fecha_accion` datetime DEFAULT NULL,
   `accion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_auditoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `auditoria_prestamo` (
 
 LOCK TABLES `auditoria_prestamo` WRITE;
 /*!40000 ALTER TABLE `auditoria_prestamo` DISABLE KEYS */;
-INSERT INTO `auditoria_prestamo` VALUES (1,1,1,1,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(2,2,2,2,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(3,3,3,3,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(4,4,4,4,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(5,5,5,5,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(6,6,6,6,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(7,7,7,7,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(8,8,8,8,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(9,9,9,9,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(10,10,10,10,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(11,11,11,11,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(12,12,12,12,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(13,13,13,13,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(14,14,14,14,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(15,15,15,15,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(16,16,16,16,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(17,17,17,17,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(18,18,18,18,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(19,19,19,19,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(20,20,20,20,'2026-04-04 22:53:13','PRESTAMO REGISTRADO'),(21,21,1,15,'2026-04-05 09:17:29','PRESTAMO REGISTRADO');
+INSERT INTO `auditoria_prestamo` VALUES (1,1,1,1,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(2,2,2,2,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(3,3,3,5,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(4,4,4,8,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(5,5,5,10,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(6,6,13,15,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(7,7,14,16,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(8,8,16,3,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(9,9,6,4,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(10,10,7,6,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(11,11,8,7,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(12,12,9,9,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(13,13,10,11,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(14,14,11,17,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(15,15,12,18,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(16,16,1,12,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(17,17,2,13,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(18,18,4,14,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(19,19,15,19,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(20,20,17,20,'2026-04-07 22:56:30','PRESTAMO REGISTRADO'),(21,1,1,1,'2026-03-01 10:30:00','PRÉSTAMO REGISTRADO'),(22,1,1,1,'2026-03-14 16:45:00','DEVOLUCIÓN REGISTRADA'),(23,9,1,12,'2026-02-01 09:15:00','PRÉSTAMO REGISTRADO'),(24,9,1,12,'2026-02-20 11:20:00','DEVOLUCIÓN CON RETRASO'),(25,19,15,19,'2026-02-15 14:00:00','PRÉSTAMO REGISTRADO'),(26,19,15,19,'2026-03-02 08:30:00','MULTA GENERADA POR RETRASO');
 /*!40000 ALTER TABLE `auditoria_prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `autor` (
 
 LOCK TABLES `autor` WRITE;
 /*!40000 ALTER TABLE `autor` DISABLE KEYS */;
-INSERT INTO `autor` VALUES (1,'Gabriel','García Márquez','Colombiana','1927-03-06'),(2,'Jorge Luis','Borges','Argentina','1899-08-24'),(3,'Isabel','Allende','Chilena','1942-08-02'),(4,'Mario','Vargas Llosa','Peruana','1936-03-28'),(5,'Tomás','González','Colombiana','1950-06-15'),(6,'Stephen','Hawking','Británica','1942-01-08'),(7,'Carl','Sagan','Estadounidense','1934-11-09'),(8,'Yuval','Harari','Israelí','1976-02-24'),(9,'Robert','Martin','Estadounidense','1952-12-05'),(10,'Andrew','Tanenbaum','Estadounidense','1944-03-16'),(11,'Edgar','Codd','Británica','1923-08-19'),(12,'Donald','Knuth','Estadounidense','1938-01-10'),(13,'Platón','','Griega','0428-01-01'),(14,'Friedrich','Nietzsche','Alemana','1844-10-15'),(15,'Immanuel','Kant','Alemana','1724-04-22');
+INSERT INTO `autor` VALUES (1,'Gabriel','García Márquez','Colombiana','1927-03-06'),(2,'Jorge Luis','Borges','Argentina','1899-08-24'),(3,'Isabel','Allende','Chilena','1942-08-02'),(4,'Mario','Vargas Llosa','Peruana','1936-03-28'),(5,'Pablo','Neruda','Chilena','1904-07-12'),(6,'Julio','Cortázar','Argentina','1914-08-26'),(7,'Laura','Restrepo','Colombiana','1950-01-01'),(8,'Álvaro','Mutis','Colombiana','1923-08-25'),(9,'Fernando','Botero','Colombiana','1932-04-19'),(10,'Fernando','Vallejo','Colombiana','1942-10-24'),(11,'Héctor','Abad Faciolince','Colombiana','1958-01-01'),(12,'William','Shakespeare','Inglesa','1564-04-23'),(13,'Miguel','de Cervantes','Española','1547-09-29'),(14,'Franz','Kafka','Checa','1883-07-03'),(15,'Ernest','Hemingway','Estadounidense','1899-07-21');
 /*!40000 ALTER TABLE `autor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +224,7 @@ CREATE TABLE `libro` (
   CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`id_editorial`) REFERENCES `editorial` (`id_editorial`),
   CONSTRAINT `libro_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   CONSTRAINT `libro_chk_1` CHECK ((`num_paginas` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
-INSERT INTO `libro` VALUES (1,'Cien años de soledad','978-0307474728',1967,471,1,1,1),(2,'El amor en los tiempos del cólera','978-0307389732',1985,348,1,1,0),(3,'Ficciones','978-8420633138',1944,224,8,1,1),(4,'El aleph','978-8420674414',1949,208,8,1,1),(5,'La casa de los espíritus','978-8401352836',1982,433,2,1,0),(6,'La ciudad y los perros','978-8420634050',1963,384,1,1,1),(7,'Breve historia del tiempo','978-0553380163',1988,212,5,2,1),(8,'Cosmos','978-0345539434',1980,365,5,2,1),(9,'Sapiens','978-0062316097',2011,443,6,3,1),(10,'Código limpio','978-0132350884',2008,431,5,4,1),(11,'Redes de computadoras','978-0132126953',2010,960,6,4,1),(12,'El modelo relacional','978-0201141924',1990,538,6,4,0),(13,'El arte de la programación','978-0201485417',1968,650,5,4,1),(14,'La república','978-8420678726',380,368,7,5,1),(15,'Así habló Zaratustra','978-8420674780',1883,352,7,5,1),(16,'Crítica de la razón pura','978-8420674803',1781,694,7,5,0),(17,'Matemáticas discretas','978-9701062937',2005,615,6,9,1),(18,'Cálculo diferencial','978-9701062944',2007,900,6,9,1),(19,'Fundamentos de economía','978-9701062951',2010,480,3,7,1),(20,'Derecho constitucional','978-9701062968',2015,520,4,6,1);
+INSERT INTO `libro` VALUES (1,'Cien años de soledad','978-0307474728',1967,471,1,1,1),(2,'El amor en los tiempos del cólera','978-0307389732',1985,348,1,1,1),(3,'Crónica de una muerte anunciada','978-1400034956',1981,128,1,1,1),(4,'El coronel no tiene quien le escriba','978-0307476701',1961,96,1,1,1),(5,'Ficciones','978-8420633138',1944,224,8,1,1),(6,'El aleph','978-8420674414',1949,208,8,1,1),(7,'Rayuela','978-8420406286',1963,736,8,1,1),(8,'La casa de los espíritus','978-8401352836',1982,433,2,1,1),(9,'Paula','978-0060927219',1994,368,2,1,1),(10,'La ciudad y los perros','978-8420634050',1963,384,1,1,1),(11,'Conversación en La Catedral','978-8420634067',1969,608,1,1,1),(12,'El otoño del patriarca','978-0307476712',1975,240,1,1,1),(13,'Doce cuentos peregrinos','978-0307476968',1992,288,1,1,1),(14,'Del amor y otros demonios','978-0307476729',1994,176,1,1,1),(15,'Hamlet','978-0743477123',1603,342,5,1,1),(16,'Don Quijote de la Mancha','978-8424117225',1605,863,7,1,1),(17,'La metamorfosis','978-0553213690',1915,201,6,1,1),(18,'El viejo y el mar','978-0684801223',1952,127,6,1,1),(19,'La hojarasca','978-0307476736',1955,128,1,1,1),(20,'El general en su laberinto','978-0307476743',1989,304,1,1,1),(21,'historia de amor','12312312-12312',2024,200,3,1,1);
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `libro_autor` (
 
 LOCK TABLES `libro_autor` WRITE;
 /*!40000 ALTER TABLE `libro_autor` DISABLE KEYS */;
-INSERT INTO `libro_autor` VALUES (1,1),(2,1),(3,2),(4,2),(5,3),(6,4),(20,4),(7,6),(8,7),(9,8),(19,8),(10,9),(11,10),(12,11),(13,12),(17,12),(18,12),(14,13),(15,14),(16,15);
+INSERT INTO `libro_autor` VALUES (1,1),(2,1),(3,1),(4,1),(12,1),(13,1),(14,1),(19,1),(20,1),(5,2),(6,2),(21,2),(8,3),(9,3),(10,4),(11,4),(7,6),(15,12),(16,13),(17,14),(18,15);
 /*!40000 ALTER TABLE `libro_autor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,7 +284,7 @@ CREATE TABLE `multa` (
   CONSTRAINT `multa_ibfk_1` FOREIGN KEY (`id_prestamo`) REFERENCES `prestamo` (`id_prestamo`),
   CONSTRAINT `multa_ibfk_2` FOREIGN KEY (`id_estado_multa`) REFERENCES `estado_multa` (`id_estado_multa`),
   CONSTRAINT `multa_chk_1` CHECK ((`monto` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,7 @@ CREATE TABLE `multa` (
 
 LOCK TABLES `multa` WRITE;
 /*!40000 ALTER TABLE `multa` DISABLE KEYS */;
-INSERT INTO `multa` VALUES (1,2,15000.00,'2025-01-26',NULL,1),(2,6,25000.00,'2025-03-02',NULL,2),(3,9,10000.00,'2025-03-22',NULL,1),(4,13,30000.00,'2025-04-11',NULL,1),(5,17,20000.00,'2025-05-01',NULL,2);
+INSERT INTO `multa` VALUES (1,9,10000.00,'2026-02-20','2026-02-25',2),(2,10,10000.00,'2026-03-01','2026-03-05',2),(3,11,14000.00,'2026-02-10','2026-02-15',2),(4,12,10000.00,'2026-02-20',NULL,1),(5,13,10000.00,'2026-03-01',NULL,1),(6,14,14000.00,'2026-02-10',NULL,1),(7,19,74000.00,'2026-03-02',NULL,1),(8,20,46000.00,'2026-03-16',NULL,1),(9,15,4000.00,'2026-04-05',NULL,1),(10,16,6000.00,'2026-04-04',NULL,1);
 /*!40000 ALTER TABLE `multa` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -338,7 +338,7 @@ CREATE TABLE `prestamo` (
   CONSTRAINT `prestamo_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id_libro`),
   CONSTRAINT `prestamo_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   CONSTRAINT `prestamo_ibfk_3` FOREIGN KEY (`id_estado_prestamo`) REFERENCES `estado_prestamo` (`id_estado_prestamo`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +347,7 @@ CREATE TABLE `prestamo` (
 
 LOCK TABLES `prestamo` WRITE;
 /*!40000 ALTER TABLE `prestamo` DISABLE KEYS */;
-INSERT INTO `prestamo` VALUES (1,1,1,'2025-01-05','2025-01-19','2025-01-18',2),(2,2,2,'2025-01-10','2025-01-24','2025-01-25',3),(3,3,3,'2025-01-15','2025-01-29','2025-01-29',2),(4,4,4,'2025-02-01','2025-02-15',NULL,1),(5,5,5,'2025-02-05','2025-02-19','2025-02-18',2),(6,6,6,'2025-02-10','2025-02-24','2025-03-01',3),(7,7,7,'2025-02-15','2025-03-01','2025-03-01',2),(8,8,8,'2025-02-20','2025-03-06',NULL,1),(9,9,9,'2025-03-01','2025-03-15','2025-03-20',3),(10,10,10,'2025-03-05','2025-03-19','2025-03-19',2),(11,11,11,'2025-03-10','2025-03-24',NULL,1),(12,12,12,'2025-03-15','2025-03-29','2025-03-28',2),(13,13,13,'2025-03-20','2025-04-03','2025-04-10',3),(14,14,14,'2025-03-25','2025-04-08',NULL,1),(15,15,15,'2025-04-01','2025-04-15','2025-04-15',2),(16,16,16,'2025-04-05','2025-04-19',NULL,1),(17,17,17,'2025-04-10','2025-04-24','2025-04-30',3),(18,18,18,'2025-04-15','2025-04-29',NULL,1),(19,19,19,'2026-01-10','2026-01-24',NULL,1),(20,20,20,'2026-02-01','2026-02-15',NULL,1),(21,15,1,'2026-04-05','2026-04-22',NULL,1);
+INSERT INTO `prestamo` VALUES (1,1,1,'2026-03-01','2026-03-15','2026-03-14',2),(2,2,2,'2026-03-05','2026-03-19','2026-03-18',2),(3,5,3,'2026-02-10','2026-02-24','2026-02-23',2),(4,8,4,'2026-01-15','2026-01-29','2026-01-28',2),(5,10,5,'2026-03-20','2026-04-03','2026-04-02',2),(6,15,13,'2026-02-20','2026-03-06','2026-03-05',2),(7,16,14,'2026-03-10','2026-03-24','2026-03-23',2),(8,3,16,'2026-03-25','2026-04-08','2026-04-06',2),(9,4,6,'2026-03-20','2026-04-03',NULL,1),(10,6,7,'2026-03-25','2026-04-08',NULL,1),(11,7,8,'2026-03-28','2026-04-11',NULL,1),(12,9,9,'2026-04-01','2026-04-15',NULL,1),(13,11,10,'2026-04-05','2026-04-19',NULL,1),(14,17,11,'2026-04-02','2026-04-16',NULL,1),(15,18,12,'2026-03-30','2026-04-13',NULL,1),(16,12,1,'2026-02-01','2026-02-15','2026-02-20',3),(17,13,2,'2026-02-10','2026-02-24','2026-03-01',3),(18,14,4,'2026-01-20','2026-02-03','2026-02-10',3),(19,19,15,'2026-02-15','2026-03-01',NULL,3),(20,20,17,'2026-03-01','2026-03-15',NULL,3);
 /*!40000 ALTER TABLE `prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -419,7 +419,7 @@ CREATE TABLE `usuario` (
   KEY `id_estado_usuario` (`id_estado_usuario`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tipo_usuario` (`id_tipo_usuario`),
   CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_estado_usuario`) REFERENCES `estado_usuario` (`id_estado_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,7 +428,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'1000001','Carlos','Rodríguez','carlos.rodriguez@urb.edu.co','1234','3101234567',1,1),(2,'1000002','María','González','maria.gonzalez@urb.edu.co','1234','3112345678',1,1),(3,'1000003','Andrés','Martínez','andres.martinez@urb.edu.co','1234','3123456789',1,1),(4,'1000004','Laura','Pérez','laura.perez@urb.edu.co','1234','3134567890',1,1),(5,'1000005','Juliana','López','juliana.lopez@urb.edu.co','1234','3145678901',1,1),(6,'1000006','Santiago','Ramírez','santiago.ramirez@urb.edu.co','1234','3156789012',1,1),(7,'1000007','Valentina','Torres','valentina.torres@urb.edu.co','1234','3167890123',1,1),(8,'1000008','David','Vargas','david.vargas@urb.edu.co','1234','3178901234',1,1),(9,'1000009','Daniela','Castro','daniela.castro@urb.edu.co','1234','3189012345',1,1),(10,'1000010','Felipe','Moreno','felipe.moreno@urb.edu.co','1234','3190123456',1,1),(11,'2000001','Jorge','Hernández','jorge.hernandez@urb.edu.co','1234','3201234567',2,1),(12,'2000002','Patricia','Díaz','patricia.diaz@urb.edu.co','1234','3212345678',2,1),(13,'2000003','Ricardo','Muñoz','ricardo.munoz@urb.edu.co','1234','3223456789',2,1),(14,'2000004','Claudia','Jiménez','claudia.jimenez@urb.edu.co','1234','3234567890',2,1),(15,'2000005','Gustavo','Ruiz','gustavo.ruiz@urb.edu.co','1234','3245678901',2,1),(16,'3000001','Mónica','Suárez','monica.suarez@urb.edu.co','admin123','3256789012',3,1),(17,'3000002','Hernando','Medina','hernando.medina@urb.edu.co','admin123','3267890123',3,1),(18,'3000003','Adriana','Rojas','adriana.rojas@urb.edu.co','admin123','3278901234',3,1),(19,'3000004','Camilo','Ortiz','camilo.ortiz@urb.edu.co','admin123','3289012345',3,1),(20,'3000005','Silvia','Reyes','silvia.reyes@urb.edu.co','admin123','3290123456',3,1);
+INSERT INTO `usuario` VALUES (1,'1085294734','Steven Alejandro','Araque Castro','steven.araque@urb.edu.co','1234','3124567890',1,1),(2,'1085294735','María Camila','Rodríguez López','maria.rodriguez@urb.edu.co','1234','3135678901',1,1),(3,'1085294736','Juan Sebastián','Martínez García','juan.martinez@urb.edu.co','1234','3146789012',1,1),(4,'1085294737','Laura Valentina','Gómez Torres','laura.gomez@urb.edu.co','1234','3157890123',1,1),(5,'1085294738','Carlos Andrés','Hernández Silva','carlos.hernandez@urb.edu.co','1234','3168901234',1,1),(6,'1085294739','Daniela Fernanda','Díaz Ramírez','daniela.diaz@urb.edu.co','1234','3179012345',1,1),(7,'1085294740','Luis Miguel','Sánchez Vargas','luis.sanchez@urb.edu.co','1234','3180123456',1,1),(8,'1085294741','Ana María','Pérez Castro','ana.perez@urb.edu.co','1234','3191234567',1,1),(9,'1085294742','José Antonio','Morales Ruiz','jose.morales@urb.edu.co','1234','3202345678',1,1),(10,'1085294743','Catalina','Jiménez Moreno','catalina.jimenez@urb.edu.co','1234','3213456789',1,1),(11,'1085294744','Pedro José','Vargas Londoño','pedro.vargas@urb.edu.co','1234','3224567890',1,1),(12,'1085294745','Sofia Alejandra','Torres Medina','sofia.torres@urb.edu.co','1234','3235678901',1,1),(13,'5234567890','Carlos Eduardo','Rincón Bravo','carlos.rincon@urb.edu.co','1234','3501234567',2,1),(14,'5234567891','María Eugenia','Parra Suárez','maria.parra@urb.edu.co','1234','3512345678',2,1),(15,'5234567892','Jorge Alberto','Carrillo Mendoza','jorge.carrillo@urb.edu.co','1234','3523456789',2,1),(16,'5234567893','Diana Patricia','Rojas Villamizar','diana.rojas@urb.edu.co','1234','3534567890',2,1),(17,'5234567894','Luis Fernando','Cárdenas Peña','luis.cardenas@urb.edu.co','1234','3545678901',2,1),(18,'1012345678','Ana Lucía','Pedraza de Peña','ana.pedraza@urb.edu.co','1234','3109876543',3,1),(19,'1012345679','Miguel Ángel','Suárez Blanco','miguel.suarez@urb.edu.co','1234','3110987654',3,1),(20,'1012345680','Carmen Rosa','Delgado Mora','carmen.delgado@urb.edu.co','1234','3121098765',3,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -663,4 +663,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-05 22:46:53
+-- Dump completed on 2026-04-07 23:16:58
