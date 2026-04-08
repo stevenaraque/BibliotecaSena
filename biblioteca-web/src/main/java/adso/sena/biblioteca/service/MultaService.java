@@ -81,4 +81,7 @@ public class MultaService {
         return new ArrayList<>();
     }
 }
+    public List<Multa> buscarPorUsuarioOLibro(String criterio) throws SQLException {
+    return multaDAO.buscarPorUsuarioOLibro(criterio);
+}
 }

@@ -4,7 +4,9 @@ import adso.sena.biblioteca.model.Multa;
 import adso.sena.biblioteca.service.MultaService;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,8 +30,23 @@ public class MultaServlet extends HttpServlet {
             return;
         }
 
-        List<Multa> multas = multaService.listarTodas();
+        // CORREGIDO: Agregar búsqueda
+        List<Multa> multas = new ArrayList<>();
+        String buscar = request.getParameter("buscar");
+        
+        try {
+            if (buscar != null && !buscar.trim().isEmpty()) {
+                multas = multaService.buscarPorUsuarioOLibro(buscar.trim());
+            } else {
+                multas = multaService.listarTodas();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al buscar multas: " + e.getMessage());
+        }
+
         request.setAttribute("multas", multas);
+        request.setAttribute("buscar", buscar);  // Para mantener el valor en el input
         request.setAttribute("usuario", session.getAttribute("usuario"));
         request.getRequestDispatcher("/views/multas.jsp").forward(request, response);
     }
@@ -78,7 +95,6 @@ public class MultaServlet extends HttpServlet {
             mensaje = "❌ Error: " + e.getMessage();
         }
 
-        // Mismo patrón que LibroServlet y PrestamoServlet
         request.setAttribute("mensaje", mensaje);
         doGet(request, response);
     }

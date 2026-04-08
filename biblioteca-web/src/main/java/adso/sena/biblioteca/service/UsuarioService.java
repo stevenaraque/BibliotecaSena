@@ -89,4 +89,12 @@ public class UsuarioService {
             return 0;
         }
     }
+    public List<Usuario> buscarPorNombreODocumento(String criterio) {
+    try {
+        return usuarioDAO.buscarPorNombreODocumento(criterio);
+    } catch (SQLException e) {
+        System.err.println("Error al buscar usuarios: " + e.getMessage());
+        return null;
+    }
+}
 }

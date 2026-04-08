@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Multas — Biblioteca SENA</title>
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -20,6 +21,16 @@
                 <i class="bi bi-exclamation-triangle-fill"></i>
                 Gestión de Multas
             </h2>
+            <%-- Después del título, agrega: --%>
+<c:if test="${not empty buscar}">
+    <div class="alert alert-info mb-4" style="background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.3); color: var(--accent-bright);">
+        <i class="bi bi-search me-2"></i>
+        Mostrando resultados para: <strong>"${buscar}"</strong>
+        <a href="multas" class="float-end" style="color: var(--accent-primary);">
+            <i class="bi bi-x-circle"></i> Limpiar búsqueda
+        </a>
+    </div>
+</c:if>
 
             <%-- Alertas --%>
             <c:if test="${not empty mensaje}">

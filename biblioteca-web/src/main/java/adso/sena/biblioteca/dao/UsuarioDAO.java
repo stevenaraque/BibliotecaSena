@@ -126,6 +126,28 @@ public class UsuarioDAO {
         }
         return 0;
     }
+    public List<Usuario> buscarPorNombreODocumento(String criterio) throws SQLException {
+    List<Usuario> usuarios = new ArrayList<>();
+    String sql = SQL_BASE + 
+                 "WHERE LOWER(u.nombres) LIKE ? OR LOWER(u.apellidos) LIKE ? " +
+                 "OR LOWER(u.documento) LIKE ? " +
+                 "ORDER BY u.id_usuario ASC";
+    
+    String like = "%" + criterio.toLowerCase() + "%";
+    try (Connection conn = ConexionDB.obtenerConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, like);
+        ps.setString(2, like);
+        ps.setString(3, like);
+        
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                usuarios.add(mapearUsuario(rs));
+            }
+        }
+    }
+    return usuarios;
+}
 
     private Usuario mapearUsuario(ResultSet rs) throws SQLException {
         Usuario u = new Usuario();

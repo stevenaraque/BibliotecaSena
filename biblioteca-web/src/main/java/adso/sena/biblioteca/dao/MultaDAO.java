@@ -129,6 +129,37 @@ public class MultaDAO {
     }
     return multas;
 }
+    public List<Multa> buscarPorUsuarioOLibro(String criterio) throws SQLException {
+    List<Multa> multas = new ArrayList<>();
+    
+    
+    String sql = "SELECT m.id_multa, m.monto, m.fecha_generacion, m.fecha_pago, "
+               + "p.id_prestamo, "
+               + "u.nombres, u.apellidos, "
+               + "l.titulo AS libro_titulo, "
+               + "em.id_estado_multa, em.nombre AS estado_nombre "
+               + "FROM multa m "
+               + "JOIN prestamo p ON m.id_prestamo = p.id_prestamo "
+               + "JOIN usuario u ON p.id_usuario = u.id_usuario "
+               + "JOIN libro l ON p.id_libro = l.id_libro "
+               + "JOIN estado_multa em ON m.id_estado_multa = em.id_estado_multa "  // <-- FALTABA ESTO
+               + "WHERE u.nombres LIKE ? OR u.apellidos LIKE ? OR l.titulo LIKE ?";
+    
+    String like = "%" + criterio + "%";
+    try (Connection conn = ConexionDB.obtenerConexion();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, like);
+        ps.setString(2, like);
+        ps.setString(3, like);
+        
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                multas.add(mapearMulta(rs)); // Ahora sí funciona
+            }
+        }
+    }
+    return multas;
+}
 
     private Multa mapearMulta(ResultSet rs) throws SQLException {
         Multa multa = new Multa();

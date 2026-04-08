@@ -7,6 +7,7 @@ import adso.sena.biblioteca.service.UsuarioService;
 import adso.sena.biblioteca.dao.TipoUsuarioDAO;
 import adso.sena.biblioteca.dao.EstadoUsuarioDAO;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,18 +21,29 @@ public class UsuarioServlet extends HttpServlet {
     private final TipoUsuarioDAO tipoUsuarioDAO   = new TipoUsuarioDAO();
     private final EstadoUsuarioDAO estadoUsuarioDAO = new EstadoUsuarioDAO();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            request.setAttribute("usuarios",      usuarioService.listarTodos());
-            request.setAttribute("tiposUsuario",  tipoUsuarioDAO.listarTodos());
-            request.setAttribute("estadosUsuario", estadoUsuarioDAO.listarTodos());
-        } catch (Exception e) {
-            request.setAttribute("mensaje", "❌ Error al cargar datos: " + e.getMessage());
+   @Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        
+        String buscar = request.getParameter("buscar");
+        List<Usuario> usuarios;
+        
+        if (buscar != null && !buscar.trim().isEmpty()) {
+            usuarios = usuarioService.buscarPorNombreODocumento(buscar.trim());
+        } else {
+            usuarios = usuarioService.listarTodos();
         }
-        request.getRequestDispatcher("/views/usuarios.jsp").forward(request, response);
+        
+        request.setAttribute("usuarios", usuarios);
+        request.setAttribute("buscar", buscar);  // Para mantener valor en el input
+        request.setAttribute("tiposUsuario", tipoUsuarioDAO.listarTodos());
+        request.setAttribute("estadosUsuario", estadoUsuarioDAO.listarTodos());
+    } catch (Exception e) {
+        request.setAttribute("mensaje", "❌ Error al cargar datos: " + e.getMessage());
     }
+    request.getRequestDispatcher("/views/usuarios.jsp").forward(request, response);
+}
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

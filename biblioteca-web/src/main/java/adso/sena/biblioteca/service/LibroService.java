@@ -94,6 +94,16 @@ public class LibroService {
         System.err.println("Error al obtener libro por ID: " + e.getMessage());
         return null;
     }
+    
+}
+
+public List<Libro> buscarPorTituloOAutor(String criterio) throws SQLException {
+    return libroDAO.buscarPorTituloOAutor(criterio);
+}
+
+public void actualizarAutor(int idLibro, int idAutor) throws SQLException {
+    libroDAO.eliminarAutoresLibro(idLibro);
+    libroDAO.asociarAutor(idLibro, idAutor);
 }
    
    

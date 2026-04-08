@@ -8,6 +8,9 @@ import adso.sena.biblioteca.service.AutorService;
 import adso.sena.biblioteca.service.CategoriaService;
 import adso.sena.biblioteca.service.EditorialService;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,10 +28,27 @@ public class LibroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("libros",      libroService.listarTodos());
+        
+        // CORREGIDO: Manejar SQLException con try-catch
+        List<Libro> libros = new ArrayList<>();
+        String buscar = request.getParameter("buscar");
+        
+        try {
+            if (buscar != null && !buscar.trim().isEmpty()) {
+                libros = libroService.buscarPorTituloOAutor(buscar.trim());
+            } else {
+                libros = libroService.listarTodos();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al buscar libros: " + e.getMessage());
+        }
+        
+        request.setAttribute("libros",      libros);
         request.setAttribute("categorias",  categoriaService.listarTodos());
         request.setAttribute("editoriales", editorialService.listarTodos());
         request.setAttribute("autores",     autorService.listarTodos());
+        request.setAttribute("buscar",      buscar);
         request.getRequestDispatcher("/views/libros.jsp").forward(request, response);
     }
 
@@ -48,6 +68,12 @@ public class LibroServlet extends HttpServlet {
                 int idCategoria     = Integer.parseInt(request.getParameter("idCategoria"));
                 int idEditorial     = Integer.parseInt(request.getParameter("idEditorial"));
                 boolean disponible  = Boolean.parseBoolean(request.getParameter("disponible"));
+                
+                // Leer el autor
+                String idAutorParam = request.getParameter("idAutor");
+                Integer idAutor = (idAutorParam != null && !idAutorParam.isEmpty()) 
+                                  ? Integer.parseInt(idAutorParam) 
+                                  : null;
 
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(idCategoria);
@@ -67,17 +93,23 @@ public class LibroServlet extends HttpServlet {
                 if ("create".equals(action)) {
                     int idGenerado = libroService.registrar(libro);
                     if (idGenerado > 0) {
-                        String idAutorParam = request.getParameter("idAutor");
-                        if (idAutorParam != null && !idAutorParam.isEmpty()) {
-                            libroService.asociarAutor(idGenerado, Integer.parseInt(idAutorParam));
+                        if (idAutor != null) {
+                            libroService.asociarAutor(idGenerado, idAutor);
                         }
                         mensaje = "✅ Libro creado correctamente";
                     } else {
                         mensaje = "❌ Error al crear libro";
                     }
                 } else {
+                    // UPDATE
                     libro.setIdLibro(Integer.parseInt(request.getParameter("idLibro")));
                     boolean resultado = libroService.actualizar(libro);
+                    
+                    // Actualizar relación con autor
+                    if (resultado && idAutor != null) {
+                        libroService.actualizarAutor(libro.getIdLibro(), idAutor);
+                    }
+                    
                     mensaje = resultado ? "✅ Libro actualizado correctamente" : "❌ Error al actualizar libro";
                 }
 
@@ -89,6 +121,7 @@ public class LibroServlet extends HttpServlet {
 
         } catch (Exception e) {
             mensaje = "❌ Error: " + e.getMessage();
+            e.printStackTrace();
         }
 
         request.setAttribute("mensaje", mensaje);
