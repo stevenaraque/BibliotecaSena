@@ -7,9 +7,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mi Portal — Biblioteca SENA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- Estilos SweetAlert Galáctico -->
+    <style>
+        .swal-galaxy {
+            background: rgba(15, 5, 26, 0.98) !important;
+            border: 1px solid rgba(138, 43, 226, 0.4) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 0 60px rgba(138, 43, 226, 0.4) !important;
+        }
+        .swal-galaxy-title {
+            font-family: 'Orbitron', sans-serif !important;
+            color: #c084fc !important;
+        }
+        .swal-galaxy-content {
+            font-family: 'Rajdhani', sans-serif !important;
+            color: #f8fafc !important;
+        }
+        .swal-galaxy-btn {
+            background: linear-gradient(135deg, #8a2be2, #4b0082) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            font-family: 'Rajdhani', sans-serif !important;
+            font-weight: 700 !important;
+            padding: 12px 24px !important;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.5) !important;
+            transition: all 0.3s ease !important;
+        }
+        .swal-galaxy-btn:hover {
+            box-shadow: 0 8px 30px rgba(138, 43, 226, 0.7) !important;
+            transform: translateY(-2px) !important;
+        }
+        .swal2-timer-progress-bar {
+            background: linear-gradient(90deg, #8a2be2, #ec4899) !important;
+        }
+        .swal-galaxy .swal2-icon.swal2-success {
+            border-color: #8a2be2 !important;
+            color: #8a2be2 !important;
+        }
+        .swal-galaxy .swal2-icon.swal2-success [class^=swal2-success-line] {
+            background-color: #8a2be2 !important;
+        }
+        .swal-galaxy .swal2-icon.swal2-warning {
+            border-color: #fbbf24 !important;
+            color: #fbbf24 !important;
+        }
+    </style>
 </head>
 <body>
     <jsp:include page="/views/includes/nav_universal.jsp"/>
@@ -91,13 +141,29 @@
             </div>
         </div>
 
-        <%-- Alertas --%>
+        <%-- Alertas con SweetAlert2 --%>
         <c:if test="${not empty mensaje}">
-            <div class="alert alert-success alert-dismissible fade show mb-4">
-                <i class="bi bi-check-circle-fill me-2"></i>
-                ${mensaje}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        customClass: {
+                            popup: 'swal-galaxy',
+                            title: 'swal-galaxy-title',
+                            htmlContainer: 'swal-galaxy-content',
+                            confirmButton: 'swal-galaxy-btn'
+                        },
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text: '${mensaje}',
+                        confirmButtonText: '¡Perfecto!',
+                        background: 'rgba(15, 5, 26, 0.98)',
+                        backdrop: 'rgba(0, 0, 0, 0.8)',
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                });
+            </script>
         </c:if>
 
         <%-- Stats personales --%>
@@ -475,6 +541,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function abrirModalPrestamo() {
             // Fecha mínima: mañana
@@ -497,13 +564,47 @@
         
         function confirmarPrestamo() {
             if (!document.getElementById("modalLibro").value) {
-                alert("❌ Selecciona un libro.");
+                Swal.fire({
+                    customClass: {
+                        popup: 'swal-galaxy',
+                        title: 'swal-galaxy-title',
+                        htmlContainer: 'swal-galaxy-content',
+                        confirmButton: 'swal-galaxy-btn'
+                    },
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Selecciona un libro primero.',
+                    confirmButtonText: 'Entendido',
+                    background: 'rgba(15, 5, 26, 0.98)',
+                    backdrop: 'rgba(0, 0, 0, 0.8)'
+                });
                 return;
             }
             if (!document.getElementById("modalFecha").value) {
-                alert("❌ Ingresa la fecha de devolución.");
+                Swal.fire({
+                    customClass: {
+                        popup: 'swal-galaxy',
+                        title: 'swal-galaxy-title',
+                        htmlContainer: 'swal-galaxy-content',
+                        confirmButton: 'swal-galaxy-btn'
+                    },
+                    icon: 'warning',
+                    title: 'Atención',
+                    text: 'Ingresa la fecha de devolución.',
+                    confirmButtonText: 'Entendido',
+                    background: 'rgba(15, 5, 26, 0.98)',
+                    backdrop: 'rgba(0, 0, 0, 0.8)'
+                });
                 return;
             }
+            
+            // Cerrar modal antes de enviar
+            const modalEl = document.getElementById("prestamoModal");
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) {
+                modal.hide();
+            }
+            
             document.getElementById("formPrestamo").submit();
         }
         
